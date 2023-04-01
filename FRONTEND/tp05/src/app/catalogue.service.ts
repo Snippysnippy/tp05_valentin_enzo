@@ -8,16 +8,16 @@ import { Product } from './models/product.model';
   providedIn: 'root'
 })
 export class CatalogueService {
+
+  apiUrl: string = environment.api;
   constructor(private http: HttpClient) { }
 
-  getBouchon(): Observable<any> {
-    return this.http.get(environment.catalogue);
+  getProduits(): Observable<any> {
+    return this.http.get<Product[]>(this.apiUrl+"catalogue");
   }
 
   getProduitById(id: number): Observable<Product> {
-    return this.getBouchon().pipe(
-      map(produits => produits.find((produit: { id: number; }) => produit.id === id))
-    );
+    return this.http.get<Product>(this.apiUrl+"catalogue/"+id);
   }
   
     

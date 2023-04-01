@@ -31,7 +31,7 @@ export class CatalogueComponent implements OnInit {
     // });
 
     //TP3-03
-    this.service.getBouchon().subscribe(data => {
+    this.service.getProduits().subscribe(data => {
       this.products = data;
       this.filteredProducts = this.products;
     });

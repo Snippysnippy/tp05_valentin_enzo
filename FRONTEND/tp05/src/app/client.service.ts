@@ -10,11 +10,13 @@ import { ClientModule } from './client/client.module';
 })
 export class ClientService {
 
+  apiUrl: string = environment.api;
+
   constructor(private http: HttpClient) { }
 
-  getBouchon(): Observable<any> {
-    return this.http.get(environment.catalogue);
-  }
+  // getBouchon(): Observable<any> {
+  //   return this.http.get(environment.catalogue);
+  // }
     
   postClient(clientData: any) {
     return this.http.post('/api/clients', clientData);
@@ -28,7 +30,7 @@ export class ClientService {
     return this.http.post('/api/login', loginData);
   }
 
-  private apiBaseUrl = 'https://example.com/api';
+  // private apiBaseUrl = 'https://example.com/api';
 
   // // Méthode pour récupérer tous les clients
   // getClients(): Observable<Client[]> {
