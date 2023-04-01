@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ClientService } from '../client.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private service: ClientService, private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -25,13 +26,19 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.submitted = true;
+    // this.submitted = true;
 
-    // stop here if form is invalid
-    if (this.loginForm.invalid) {
-      return;
-    }
+    // // stop here if form is invalid
+    // if (this.loginForm.invalid) {
+    //   return;
+    // }
 
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.loginForm.value));
+    // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.loginForm.value));
+    this.service.postLogin(this.loginForm.value.email, this.loginForm.value.password).subscribe(
+      (data) => {
+        //stocker le JWT
+        console.log('Authentification réussie !');
+      }
+    );
   }
 }
