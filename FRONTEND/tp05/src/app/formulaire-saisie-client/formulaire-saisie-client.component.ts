@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ClientService } from '../client.service';
 
 @Component({
   selector: 'app-formulaire-saisie-client',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./formulaire-saisie-client.component.scss']
 })
 export class FormulaireSaisieClientComponent implements OnInit {
-  constructor() { }
+  constructor(private service: ClientService) { }
   ngOnInit(): void {
     // throw new Error('Method not implemented.');
   }
@@ -70,5 +71,28 @@ export class FormulaireSaisieClientComponent implements OnInit {
 
   changeRecap (val : boolean) {
     this.recap = val
+  }
+
+  sendData () {
+    this.recap = true;
+
+    const formData = new FormData();
+    formData.append('civilite', this.civilite);
+    formData.append('nom', this.nom);
+    formData.append('prenom', this.prenom);
+    formData.append('adresse', this.adresse);
+    formData.append('cp', this.cp);
+    formData.append('ville', this.ville);
+    formData.append('pays', this.pays);
+    formData.append('tel', this.tel);
+    formData.append('email', this.email);
+    formData.append('login', this.login);
+    formData.append('password', this.password);
+
+    this.service.postClient(formData).subscribe(
+      (data) => {
+        console.log(data);
+      }
+    );
   }
 }

@@ -16,10 +16,10 @@ export class DetailProduitComponent implements OnInit {
   constructor(private route: ActivatedRoute, private store: Store,private service: CatalogueService) { }
 
   ngOnInit(): void {
-    const id = + (this.route.snapshot.paramMap.get('id') || '1');
+    const id = + (this.route.snapshot.paramMap.get('id') || 1);
     // Ici, on récupère le produit correspondant à l'id en utilisant par exemple un service
     this.service.getProduitById(id).subscribe(data => {
-      this.produit = data;
+      this.produit = data[0];
     });
   }
 

@@ -19,11 +19,11 @@ export class ClientService {
   // }
     
   postClient(clientData: any) {
-    return this.http.post('/api/clients', clientData);
+    return this.http.post(this.apiUrl + 'user', clientData);
   }
 
   getClient(clientId: any) {
-    return this.http.get(`/api/clients/${clientId}`);
+    return this.http.get(this.apiUrl + `user`);
   }
 
   postLogin(login: string, password: string): Observable<any> {

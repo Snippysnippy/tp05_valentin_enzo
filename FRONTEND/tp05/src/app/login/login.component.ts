@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     //   return;
     // }
 
-    alert('Connexion réussie');
+    console.log('Connexion réussie');
     this.service.postLogin(this.loginForm.value.email, this.loginForm.value.password).subscribe(
       (data) => {
         //stocker le JWT

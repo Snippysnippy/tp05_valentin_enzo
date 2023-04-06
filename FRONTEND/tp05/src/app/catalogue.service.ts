@@ -16,8 +16,8 @@ export class CatalogueService {
     return this.http.get<Product[]>(this.apiUrl+"catalogue");
   }
 
-  getProduitById(id: number): Observable<Product> {
-    return this.http.get<Product>(this.apiUrl+"catalogue/"+id);
+  getProduitById(id: number): Observable<Product[]> {
+    return this.http.get<Product[]>(this.apiUrl+"catalogue/"+id);
   }
   
     
