@@ -5,8 +5,8 @@ import { environment } from 'src/environments/environment';
 import { ClientModule } from './client/client.module';
 
 @Injectable({
-  // providedIn: 'root'
-  providedIn: ClientModule
+  providedIn: 'root'
+  // providedIn: ClientModule
 })
 export class ClientService {
 
@@ -27,7 +27,11 @@ export class ClientService {
   }
 
   postLogin(login: string, password: string): Observable<any> {
-    return this.http.post<any>(this.apiUrl+"login", {login: login, password: password});
+    const formData = new FormData();
+    //problème avec raw json
+    formData.append('email', login);
+    formData.append('password', password);
+    return this.http.post<any>(this.apiUrl+"login", formData);
   }
 
   // private apiBaseUrl = 'https://example.com/api';

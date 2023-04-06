@@ -26,18 +26,17 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    // this.submitted = true;
+    this.submitted = true;
 
     // // stop here if form is invalid
     // if (this.loginForm.invalid) {
     //   return;
     // }
 
-    // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.loginForm.value));
+    alert('Connexion réussie');
     this.service.postLogin(this.loginForm.value.email, this.loginForm.value.password).subscribe(
       (data) => {
         //stocker le JWT
-        console.log('Authentification réussie !');
       }
     );
   }
